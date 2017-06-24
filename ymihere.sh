@@ -18,7 +18,7 @@ ymih() {
 				fi
 				;;
 			+)
-				if [ "$#" gt 1 ] ; then
+				if [ "$#" -gt 1 ] ; then
 					shift
 					export YMIHERE="$YMIHERE
   $*"
@@ -30,6 +30,7 @@ ymih() {
 					export YMIHERE="$YMIHERE
   $INPUT"
 				fi
+				;;
 			-h*|--help)
 cat <<HELP
 ymih (whY aM I Here?)

@@ -2,7 +2,31 @@
 
 ymih() {
 	if [ $# = 0 ] ; then
-		echo " $YMIHERE " | sed -e ":pad ; /.\{$COLUMNS\}/ ! { ; s/^/>/ ; s/\$/</ ; /^>\{10\}/ s/>\{5\}/<<<<</ ; /<\{10\}\$/ s/<\{5\}\$/>>>>>/ ; b pad } ; /.\{$COLUMNS\}./ s/.//"
+		printf '%s\n' "$YMIHERE" | sed -e "
+1 {
+	s/^/ /
+	s/\$/ /
+	:pad
+	/.\{$COLUMNS\}/ ! {
+		s/^/>/
+		s/\$/</
+		/^>\{10\}/ s/>\{5\}/<<<<</
+		/<\{10\}\$/ s/<\{5\}\$/>>>>>/
+		b pad
+	}
+	/.\{$COLUMNS\}./ s/.//
+}
+2,$ {
+	s/^[	]*/+ /
+	:indent
+	/^ \{$(($COLUMNS / 3))\}/ ! {
+		/.\{$COLUMNS\}/ ! {
+			s/^/ /
+			b indent
+		}
+	}
+}"
+		printf '\n'
 	else
 		case "$1" in
 			--|-)
@@ -68,6 +92,10 @@ HELP
 	fi
 }
 
-echo 'Why are you here?'
-ymih --
-printf 'Okay. Type "\033[4mymih\033[m" (wh\033[4my\033[m a\033[4mm\033[m \033[4mI\033[m \033[4mh\033[mere) if you need a reminder of\nwhy you have opened this terminal.\n'
+yruh() {
+	echo 'Why are you here?'
+	ymih --
+	printf 'Okay. Type "\033[4mymih\033[m" (wh\033[4my\033[m a\033[4mm\033[m \033[4mI\033[m \033[4mh\033[mere) if you need a reminder of\nwhy you have opened this terminal.\n'
+}
+
+yruh

@@ -95,7 +95,7 @@ HELP
 yruh() {
 	echo 'Why are you here?'
 	ymih --
-	printf 'Okay. Type "\033[4mymih\033[m" (wh\033[4my\033[m a\033[4mm\033[m \033[4mI\033[m \033[4mh\033[mere) if you need a reminder of\nwhy you have opened this terminal.\n'
+	printf 'Okay. Type "____\010\010\010\010ymih" (wh_\010y a_\010m _\010I _\010here) if you need a reminder of\nwhy you have opened this terminal.\n' | $(which no-ul || printf cat)
 }
 
 yruh

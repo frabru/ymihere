@@ -37,6 +37,7 @@ ymih() {
 					unset YMIHERE
 					while ! [ -n "$YMIHERE" ] ; do
 						IFS='		' read -r YMIHERE
+						YMIHERE="${YMIHERE#[[:cntrl:]]}"
 					done
 					export YMIHERE
 				fi

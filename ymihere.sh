@@ -74,7 +74,7 @@ Usage:
     ymih + [<TEXT>]
         Adds a text as an indented line to the text.
         If + is used without an argument, text is read
-				from stdin.
+        from stdin.
 
     ymih -h|--help
         Print this help text and exit.
@@ -94,8 +94,44 @@ HELP
 }
 
 yruh() {
-	echo 'Why are you here?'
-	ymih --
+	if [ $# -gt 0 ] ; then
+		case "$1" in
+			-h*|--help)
+cat <<HELP
+yruh (whY aRe yoU Here?)
+
+Asks for a text to set for ymih.
+
+This calls
+
+    ymih --
+
+but prints a question before and a guide text afterwards.
+
+Usage:
+    yruh
+        Ask for why you are here and read text from stdin.
+
+    yruh -h|--help
+        Print this help text and exit.
+
+Author: Frank Bruder <mail@frabru.de>
+HELP
+				return 0
+				;;
+			-*)
+				printf 'Unsupported option "%s"\n' "$1">&2
+				return 2
+				;;
+			*)
+				printf 'Unsupported operand "%s"\n' "$1">&2
+				return 2
+				;;
+		esac
+	else
+		echo 'Why are you here?'
+		ymih --
+	fi
 	printf 'Okay. Type "____\010\010\010\010ymih" (wh_\010y a_\010m _\010I _\010here) if you need a reminder of\nwhy you have opened this terminal.\n' | $(which ul || printf cat)
 }
 

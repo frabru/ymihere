@@ -18,7 +18,7 @@ Every time you open a new terminal tab you will be asked "why are you here?" and
 
 Example:
 
-```shell
+```
 Why are you here?
 
  to demonstrate how ymih works

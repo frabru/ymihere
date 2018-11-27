@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 ymih() {
 	if [ $# = 0 ] ; then
@@ -132,7 +132,7 @@ HELP
 		echo 'Why are you here?'
 		ymih --
 	fi
-	printf 'Okay. Type "____\010\010\010\010ymih" (wh_\010y a_\010m _\010I _\010here) if you need a reminder of\nwhy you have opened this terminal.\n' | $(which ul || printf cat)
+	printf 'Okay. Type "____\010\010\010\010ymih" (wh_\010y a_\010m _\010I _\010here) if you need a reminder of\nwhy you have opened this terminal.\n' | "$(command -v ul || printf cat)"
 }
 
 case "$-" in
